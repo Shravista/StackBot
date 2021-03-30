@@ -3,7 +3,7 @@
 import rospy
 
 from geometry_msgs.msg import Twist
-from controller import Controller
+from .controller import Controller
 
 class RCTeleop(Controller):
 	def __init__(self):
