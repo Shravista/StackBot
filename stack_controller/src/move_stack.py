@@ -11,4 +11,4 @@ def main():
 	rate = rospy.Rate(2)
 	
 	while not rospy.is_shutdown():
-		supervisor.execute
+		supervisor.execute()
