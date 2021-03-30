@@ -10,11 +10,11 @@ class Supervisor(object):
 		rospy.on_shutdown(self.shutdownHook)
 		self.controllers = {"rc": RCTeleop()}
 		self.current_state = "rc"
-		self.current_controller = self.controller[self.current_state]
+		self.current_controller = self.controllers[self.current_state]
 		
 		self.bot = StackBot()
 		rospy.loginfo(" WheelBase: " + str(self.bot.wheelBase) + " WheelRadius: " + str(self.bot.wheelRadius))
-		self.dd = DiffDrive(self.bot.wheelBase, self.wheelRadius)
+		self.dd = DiffDrive(self.bot.wheelBase, self.bot.wheelRadius)
 	
 	def execute(self):
 		# get commands in inicycle model
