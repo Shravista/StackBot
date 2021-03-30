@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 import rospy
-from stack_bot import StackBot
-from rc_teleop import RCTeleop
-from diffDrive import DiffDrive
+from .stack_bot import StackBot
+from .rc_teleop import RCTeleop
+from .diffDrive import DiffDrive
 
 class Supervisor(object):
 	def __init__(self):
