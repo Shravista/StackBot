@@ -81,7 +81,7 @@ class StackBot(object):
 		# convert power norms
 
 		self.cur_Wpow_left.data = self.velocity_to_power(vl)
-		self.cur_Wpow_right.data = self.velocities_to_power(vr)
+		self.cur_Wpow_right.data = self.velocity_to_power(vr)
 
 		if self.cur_Wpow_left.data !=0.0 or self.cur_Wpow_right.data !=0.0:
 			rospy.loginfo(rospy.get_caller_id() + "right power: "+ str(self.cur_Wpow_right) + " left power: " + str(self.cur_Wpow_left))
