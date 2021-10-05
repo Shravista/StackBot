@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+	<rosparam file="$(find stackbot_description)/config/stackbot_ctrlr.yaml" command="load"/>
+	<node name="stackbot_controller_manager" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="stackbot_base_controller"/>
+</launch>

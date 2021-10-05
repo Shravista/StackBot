@@ -19,8 +19,14 @@ class Supervisor(object):
 	def execute(self):
 		# get commands in inicycle model
 		ctrl_output = self.current_controller.execute()
+<<<<<<< HEAD
                 # convert unicycle model commands to differential drive model
 		diff_output =  self.dd.uni_to_diff(ctrl_output["v"], ctrl_output["w"])
+=======
+		
+		# convert unicycle model commands to differential drive model
+		diff_output = self.dd.uni_to_diff(ctrl_output["v"], ctrl_output["w"])
+>>>>>>> d326fc6f8489b8f3ca07fccecd421f2761208e9e
 		if ctrl_output["v"] != 0.0 or ctrl_output["w"] != 0.0:
             		rospy.loginfo(" v: " + str(ctrl_output["v"]) + " w: " + str(ctrl_output["w"]))
             		rospy.loginfo(" vl: " + str(diff_output["vl"]) + " vr: " + str(diff_output["vr"]))
