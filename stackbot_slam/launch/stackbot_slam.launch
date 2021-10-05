@@ -1,0 +1,6 @@
+<launch>
+	<node pkg="gmapping" type="slam_gmapping" name="stackbot_slam_gmapping" output="screen">
+		<rosparam command="load" file="$(find stackbot_slam)/config/params_slam.yaml"/>
+	</node>
+</launch>
+

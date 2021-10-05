@@ -1,0 +1,7 @@
+<launch>
+    <param name="/counter_publisher_rate" type="int" value="5" />
+    <node name="counter_publisher" pkg="my_robot_tutorials" type="counter.py" output="screen"/>
+    <node name="serial_node" pkg="rosserial_arduino" type="serial_node.py">
+        <param name="port" type="string" value="/dev/ttyACM0" />
+    </node>
+</launch>

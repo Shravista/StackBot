@@ -1,0 +1,6 @@
+<launch>
+	<node pkg="tf2_ros" type="static_transform_publisher" name="laser_link" args="0 0 194 0 0 0 base_link base_laser" />
+	<include file="$(find rplidar_ros)/launch/rplidar.launch" />
+	<node pkg="stack_controller" type="move_stack.py" name="move_stackBot" output="screen"/>
+</launch>
+

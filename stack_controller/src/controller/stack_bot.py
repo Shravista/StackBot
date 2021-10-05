@@ -5,8 +5,8 @@ from std_msgs.msg import Float32
 
 class StackBot(object):
 	def __init__(self):
-		self.wheelBase = rospy.get_param("wheelBase",default=0.13)
-		self.wheelRadius = rospy.get_param("wheelRadius",default=0.030)
+		self.wheelBase = rospy.get_param("wheelBase",default=0.216)
+		self.wheelRadius = rospy.get_param("wheelRadius",default=0.0325)
 		
 		# Wheel min and max no-load velocities in radians per sec
 		self.wheel_speed_min = rospy.get_param("wheel_speed/min",default=3.1)
@@ -37,20 +37,20 @@ class StackBot(object):
 		self.WLeft_pub.publish(self.cur_Wpow_left)
 	
 	def velocity_to_power(self,v):
-		modV = abs(v)
+		av = abs(v)
 		
 		# If velocity is below minimum velocity turnable by PWM, then
         	# just set to zero since the wheels won't spin anyway
 		if av < self.wheel_speed_min:
 			return 0.0
 		a = b = a_pow = b_pow = None
-		nnn = None
+		nnn = 0.0
 		if av >= self.wheel_speed_min and av < self.wheel_speed_mid:
 			a = self.wheel_speed_min
 			a_pow = self.wheel_min_power
 			b = self.wheel_speed_mid
 			b_pow = self.wheel_mid_power
-		elif av >= self.wheel_speed_mid and av < self.wheel_speed_max:
+		elif av >= self.wheel_speed_mid and av <= self.wheel_speed_max:
 			a = self.wheel_speed_mid
 			a_pow = self.wheel_mid_power
 			b = self.wheel_speed_max
@@ -81,7 +81,7 @@ class StackBot(object):
 		# convert power norms
 
 		self.cur_Wpow_left.data = self.velocity_to_power(vl)
-		self.cur_Wpow_right.data = self.velocities_to_power(vr)
+		self.cur_Wpow_right.data = self.velocity_to_power(vr)
 
 		if self.cur_Wpow_left.data !=0.0 or self.cur_Wpow_right.data !=0.0:
 			rospy.loginfo(rospy.get_caller_id() + "right power: "+ str(self.cur_Wpow_right) + " left power: " + str(self.cur_Wpow_left))
